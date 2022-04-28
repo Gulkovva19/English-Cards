@@ -1,0 +1,9 @@
+@import 'variables';
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 78vh;
+    background-color: $mainColor;
+}

@@ -1,0 +1,105 @@
+@import 'variables';
+
+.row {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $secondColor;
+    color: $fontColor;
+}
+
+.row-main {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+    background-color: $thirdColor;
+    color: $borderColor;
+    text-transform: uppercase;
+}
+
+.cell {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    width: 20%;
+    border: 1px solid $borderColor;
+}
+
+.cell-main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    width: 20%;
+    border: 1px solid $mainColor;
+}
+
+.cell-main-action {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    width: 10%;
+    border: 1px solid $mainColor;
+}
+
+.cell-action {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 10px;
+    width: 10%;
+    border: 1px solid $borderColor;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 7px;
+    padding-right: 10px;
+    width: 100%;
+    height: 60%;
+}
+
+.button-save {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $borderColor;
+    font-weight: 400;
+    width: 45%;
+    height: 100%;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, $mainColor 0%, $fontColor 51%, $mainColor 100%);
+    background-size: 200% auto;
+    border: none;
+    transition: .5s;
+
+    &:hover {
+        background-position: right center;
+    }
+}
+
+.input-edit {
+    width: 100%;
+    margin-right: 10px;
+    height: 60%;
+    border: $secondColor;
+    border-radius: 5px;
+    color: $fontColor;
+}
+
+
+.icon-edit{
+    border-radius: 5px;
+
+    &:hover{
+        background-color: $borderColor;
+    }
+}
