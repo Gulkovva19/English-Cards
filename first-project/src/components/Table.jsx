@@ -1,4 +1,4 @@
-import "../assets/styles/base.scss";
+
 import Row from "./Row.jsx";
 
 let wordsJson = [

@@ -1,4 +1,4 @@
-import "../assets/styles/base.scss";
+
 import Table from "./Table.jsx";
 
 function Home() {

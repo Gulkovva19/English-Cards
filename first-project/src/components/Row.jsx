@@ -1,4 +1,4 @@
-import "../assets/styles/base.scss";
+
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 function Row(props) {

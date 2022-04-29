@@ -1,4 +1,4 @@
-import "../assets/styles/base.scss";
+
 import { HeartOutlined } from "@ant-design/icons";
 
 function Header() {
