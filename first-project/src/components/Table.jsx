@@ -127,15 +127,15 @@ let wordsJson = [
 
 function Table() {
   return (
-    <div className="table">
-      <div className="row-main">
-        <div className="cell-main">English</div>
-        <div className="cell-main">Transcription</div>
-        <div className="cell-main">Russian</div>
-        <div className="cell-main">Tags</div>
-        <div className="cell-main-action">Edit</div>
-        <div className="cell-main-action">Delete</div>
-      </div>
+    <table className="table">
+      <tr className="row-main">
+        <th className="cell-main">English</th>
+        <th className="cell-main">Transcription</th>
+        <th className="cell-main">Russian</th>
+        <th className="cell-main">Tags</th>
+        <th className="cell-main-action">Edit</th>
+        <th className="cell-main-action">Delete</th>
+      </tr>
       {wordsJson.map((word) => (
         <Row
           english={word.english}
@@ -145,7 +145,7 @@ function Table() {
           isEdit={word.isEdit}
         ></Row>
       ))}
-    </div>
+    </table>
   );
 }
 

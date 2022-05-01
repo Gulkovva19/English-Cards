@@ -3,18 +3,18 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 function Row(props) {
   return (
-    <div className="row">
-      <div className="cell">{props.isEdit ? <input className="input-edit" value={props.english}></input> : props.english}</div>
-      <div className="cell">{props.isEdit ? <input className="input-edit" value={props.transcription}></input> : props.transcription}</div>
-      <div className="cell">{props.isEdit ? <input className="input-edit" value={props.russian}></input> : props.russian}</div>
-      <div className="cell">{props.isEdit ? <input className="input-edit" value={props.tags}></input> : props.tags}</div>
-      <div className="cell-action">
+    <tr className="row">
+      <td className="cell">{props.isEdit ? <input className="input-edit" value={props.english}></input> : props.english}</td>
+      <td className="cell">{props.isEdit ? <input className="input-edit" value={props.transcription}></input> : props.transcription}</td>
+      <td className="cell">{props.isEdit ? <input className="input-edit" value={props.russian}></input> : props.russian}</td>
+      <td className="cell">{props.isEdit ? <input className="input-edit" value={props.tags}></input> : props.tags}</td>
+      <td className="cell-action">
         {props.isEdit ? <div className="button-container"><button className="button-save">Save</button><button className="button-save">Cansel</button></div> : <div className="icon-edit"><EditOutlined /></div>}
-      </div>
-      <div className="cell-action">
+      </td>
+      <td className="cell-action">
         <div className="icon-edit"><DeleteOutlined /></div>
-      </div>
-    </div>
+      </td>
+    </tr>
   );
 }
 
