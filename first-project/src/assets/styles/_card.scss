@@ -1,0 +1,51 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 400px;
+    border: 2px solid $borderColor;
+    box-shadow: 0px 0px 5px 5px rgb(255, 189, 169);
+    font-family: $fontFamily;
+    letter-spacing: $letterSpace;
+    background-color: $secondColor;
+    color: $fontColor;
+}
+
+.card-english {
+    margin-top: 115px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.card-transcription {
+    margin-top: 10px;
+}
+
+.button-show-container {
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+
+.button-show {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $borderColor;
+    font-weight: 400;
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, $mainColor 0%, $fontColor 51%, $mainColor 100%);
+    background-size: 200% auto;
+    border: none;
+    transition: .5s;
+
+    &:hover {
+        background-position: right center;
+    }
+}

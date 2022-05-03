@@ -4,6 +4,7 @@ import './assets/styles/base.scss'
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './components/Home.jsx'
+import Game from './components/Game.jsx'
 
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
     <div className="App">
       <Header />
       <Home />
+      <Game />
       <Footer />
     </div>
   );
