@@ -1,5 +1,5 @@
-
-import Row from "./Row.jsx";
+import Card from "./Card.jsx";
+import React, { useState } from "react";
 
 let wordsJson = [
   {
@@ -125,28 +125,38 @@ let wordsJson = [
   },
 ];
 
-function Table() {
+function Slider() {
+  const [slideIndex, setSlideIndex] = useState(1);
+
+  const nextSlide = () => {
+    if (slideIndex !== wordsJson.length) {
+      setSlideIndex(slideIndex + 1);
+    } else if (slideIndex === wordsJson.length) {
+      setSlideIndex(1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (slideIndex !== 1) {
+      setSlideIndex(slideIndex - 1);
+    } else if (slideIndex === 1) {
+      setSlideIndex(wordsJson.length);
+    }
+  };
+
+  const elements = wordsJson.map((word) => {
+    const { id, ...wordProps } = word;
+
+    return <Card key={id} id={id} {...wordProps} />;
+  });
+
   return (
-    <table className="table">
-      <tr className="row-main">
-        <th className="cell-main">English</th>
-        <th className="cell-main">Transcription</th>
-        <th className="cell-main">Russian</th>
-        <th className="cell-main">Tags</th>
-        <th className="cell-main-action">Edit</th>
-        <th className="cell-main-action">Delete</th>
-      </tr>
-      {wordsJson.map((word) => (
-        <Row
-          english={word.english}
-          transcription={word.transcription}
-          russian={word.russian}
-          tags={word.tags}
-          isEdit={word.isEdit}
-        ></Row>
-      ))}
-    </table>
+    <div>
+      <button onClick={nextSlide}>вперед</button>
+      <button onClick={prevSlide}>назад</button>
+      <div className="game">{elements[slideIndex-1]}</div>
+    </div>
   );
 }
 
-export default Table;
+export default Slider;
