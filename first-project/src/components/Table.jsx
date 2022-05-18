@@ -1,4 +1,3 @@
-
 import Row from "./Row.jsx";
 
 let wordsJson = [
@@ -128,23 +127,28 @@ let wordsJson = [
 function Table() {
   return (
     <table className="table">
-      <tr className="row-main">
-        <th className="cell-main">English</th>
-        <th className="cell-main">Transcription</th>
-        <th className="cell-main">Russian</th>
-        <th className="cell-main">Tags</th>
-        <th className="cell-main-action">Edit</th>
-        <th className="cell-main-action">Delete</th>
-      </tr>
-      {wordsJson.map((word) => (
-        <Row
-          english={word.english}
-          transcription={word.transcription}
-          russian={word.russian}
-          tags={word.tags}
-          isEdit={word.isEdit}
-        ></Row>
-      ))}
+      <thead>
+        <tr className="row-main">
+          <th className="cell-main">English</th>
+          <th className="cell-main">Transcription</th>
+          <th className="cell-main">Russian</th>
+          <th className="cell-main">Tags</th>
+          <th className="cell-main-action">Edit</th>
+          <th className="cell-main-action">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {wordsJson.map((word) => (
+          <Row
+            key={word.id}
+            english={word.english}
+            transcription={word.transcription}
+            russian={word.russian}
+            tags={word.tags}
+            isEdit={word.isEdit}
+          ></Row>
+        ))}
+      </tbody>
     </table>
   );
 }

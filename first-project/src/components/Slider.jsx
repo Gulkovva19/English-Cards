@@ -153,9 +153,9 @@ function Slider() {
 
   return (
     <div className="game-container">
-      <button className="game-button" onClick={nextSlide}><LeftOutlined /></button>
+      <button className="game-button" onClick={prevSlide}><LeftOutlined /></button>
       <div>{elements[slideIndex-1]}</div>
-      <button className="game-button" onClick={prevSlide}><RightOutlined /></button>
+      <button className="game-button" onClick={nextSlide}><RightOutlined /></button>
     </div>
   );
 }
