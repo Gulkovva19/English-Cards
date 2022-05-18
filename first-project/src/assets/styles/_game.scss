@@ -5,3 +5,24 @@
     padding-bottom: 150px;
     background-color: $mainColor;
 }
+
+.game-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.game-button{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    margin: 20px;
+    box-shadow: 0px 0px 5px 5px rgb(255, 189, 169);
+    background-color: $secondColor;
+    color: $fontColor;
+}
+
+.game-button:hover{
+    border: 2px solid $borderColor;
+}

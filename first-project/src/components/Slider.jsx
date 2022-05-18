@@ -1,5 +1,6 @@
 import Card from "./Card.jsx";
 import React, { useState } from "react";
+import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 
 let wordsJson = [
   {
@@ -151,10 +152,10 @@ function Slider() {
   });
 
   return (
-    <div>
-      <button onClick={nextSlide}>вперед</button>
-      <button onClick={prevSlide}>назад</button>
-      <div className="game">{elements[slideIndex-1]}</div>
+    <div className="game-container">
+      <button className="game-button" onClick={nextSlide}><LeftOutlined /></button>
+      <div>{elements[slideIndex-1]}</div>
+      <button className="game-button" onClick={prevSlide}><RightOutlined /></button>
     </div>
   );
 }

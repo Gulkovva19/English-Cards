@@ -37,7 +37,7 @@ const changeTags = (event) => {
       <td className="cell">{pressed ? <input name="russian" className="input-edit" value={textRussian} onChange={changeRussian}></input> : props.russian}</td>
       <td className="cell">{pressed ? <input name="tags" className="input-edit" value={textTags} onChange={changeTags}></input> : props.tags}</td>
       <td className="cell-action">
-        {pressed ? <div className="button-container"><button className="button-save">Save</button><button onClick = {handleChange} className="button-save">Cansel</button></div> : <div onClick = {handleChange} className="icon-edit"><EditOutlined/></div>}
+        {pressed ? <div className="button-container"><button className="button-save">save</button><button onClick = {handleChange} className="button-save">cansel</button></div> : <div onClick = {handleChange} className="icon-edit"><EditOutlined/></div>}
       </td>
       <td className="cell-action">
         <div className="icon-edit"><DeleteOutlined/></div>

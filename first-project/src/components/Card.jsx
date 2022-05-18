@@ -12,7 +12,7 @@ function Card(props) {
     <div className="card">
       <div className="card-english">{props.english}</div>
       <div className="card-transcription">{props.transcription}</div>
-      <div className="button-show-container" onClick = {handleChange}>{pressed ? <div>{props.russian}</div> : <button className="button-show">Show</button>}</div>
+      <div className="button-show-container" onClick = {handleChange}>{pressed ? <div>{props.russian}</div> : <button className="button-show">SHOW</button>}</div>
     </div>
   );
 }
