@@ -1,4 +1,5 @@
 import Row from "./Row.jsx";
+import React, { useState } from "react";
 
 let wordsJson = [
   {
@@ -125,6 +126,15 @@ let wordsJson = [
 ];
 
 function Table() {
+  const [wordCollection, setwordCollection] = useState(wordsJson);
+
+  const onDelete = (index) => {
+    console.log(index);
+    const array = [...wordCollection];
+    array.splice(index, 1);
+    setwordCollection(array);
+  };
+
   return (
     <table className="table">
       <thead>
@@ -138,14 +148,16 @@ function Table() {
         </tr>
       </thead>
       <tbody>
-        {wordsJson.map((word) => (
+        {wordCollection.map((word, index) => (
           <Row
+            index={index}
+            id={word.id}
             key={word.id}
             english={word.english}
             transcription={word.transcription}
             russian={word.russian}
             tags={word.tags}
-            isEdit={word.isEdit}
+            onDelete={onDelete}
           ></Row>
         ))}
       </tbody>

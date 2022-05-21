@@ -38,6 +38,10 @@ const changeTags = (event) => {
   setTags(event.target.value);
 }
 
+const ondelete = () => {
+  props.onDelete(props.index);
+};
+
   return (
     <tr className="row">
       <td className="cell">{pressed ? <input name="english" className="input-edit" value={textEnglish} onChange={changeEnglish}></input> : textEnglish}</td>
@@ -48,7 +52,7 @@ const changeTags = (event) => {
         {pressed ? <div className="button-container"><button onClick = {handleChange} className="button-save">save</button><button onClick = {handleChangeCansel} className="button-save">cansel</button></div> : <div onClick = {handleChange} className="icon-edit"><EditOutlined/></div>}
       </td>
       <td className="cell-action">
-        <div className="icon-edit"><DeleteOutlined/></div>
+        <div className="icon-edit" onClick = {ondelete}><DeleteOutlined/></div>
       </td>
     </tr>
   );
