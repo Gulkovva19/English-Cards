@@ -149,16 +149,7 @@ function Table() {
       </thead>
       <tbody>
         {wordCollection.map((word, index) => (
-          <Row
-            index={index}
-            id={word.id}
-            key={word.id}
-            english={word.english}
-            transcription={word.transcription}
-            russian={word.russian}
-            tags={word.tags}
-            onDelete={onDelete}
-          ></Row>
+          <Row index={index} key={word.id} {...word} onDelete={onDelete}></Row>
         ))}
       </tbody>
     </table>

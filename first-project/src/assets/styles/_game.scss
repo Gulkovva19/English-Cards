@@ -1,8 +1,9 @@
 .game {
     display: flex;
     justify-content: center;
-    height: 100%;
-    padding-bottom: 150px;
+    align-items: flex-start;
+    height: 100vh;
+    padding-top: 70px;
     background-color: $mainColor;
 }
 

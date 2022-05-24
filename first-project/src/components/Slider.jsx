@@ -147,15 +147,18 @@ function Slider() {
 
   const elements = wordsJson.map((word) => {
     const { id, ...wordProps } = word;
-
     return <Card key={id} id={id} {...wordProps} />;
   });
 
   return (
     <div className="game-container">
-      <button className="game-button" onClick={prevSlide}><LeftOutlined /></button>
-      <div>{elements[slideIndex-1]}</div>
-      <button className="game-button" onClick={nextSlide}><RightOutlined /></button>
+      <button className="game-button" onClick={prevSlide}>
+        <LeftOutlined />
+      </button>
+      <div>{elements[slideIndex - 1]}</div>
+      <button className="game-button" onClick={nextSlide}>
+        <RightOutlined />
+      </button>
     </div>
   );
 }
