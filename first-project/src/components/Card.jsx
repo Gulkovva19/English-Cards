@@ -1,18 +1,26 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 
 function Card(props) {
-
     const [pressed, setPressed] = useState(false);
+    const btnRef = useRef();
+
+    // useEffect(()=>{
+    //   btnRef.current.focus();
+    // }, []);
+
 
     const handleChange = () => {
         setPressed(!pressed);
+        props.wordAdd();
+        console.log(btnRef.current);
+        btnRef.current.focus();
       }
 
   return (
     <div className="card">
       <div className="card-english">{props.english}</div>
       <div className="card-transcription">{props.transcription}</div>
-      <div className="button-show-container" onClick = {handleChange}>{pressed ? <div>{props.russian}</div> : <button className="button-show">SHOW</button>}</div>
+      <div className="button-show-container" onClick = {handleChange}>{pressed ? <div>{props.russian}</div> : <button ref={btnRef} className="button-show">SHOW</button>}</div>
     </div>
   );
 }

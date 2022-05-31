@@ -13,6 +13,7 @@ function Table() {
     setwordCollection(array);
   };
 
+
   return (
     <table className="table">
       <thead>

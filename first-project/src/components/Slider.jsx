@@ -6,6 +6,7 @@ import wordsJson from '../resources/wordsJson.json';
 
 function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
+  const [wordNumber, setwordNumber] = useState(0);
 
   const nextSlide = () => {
     if (slideIndex !== wordsJson.length) {
@@ -23,12 +24,17 @@ function Slider() {
     }
   };
 
+  const wordAdd = () => {
+    setwordNumber(wordNumber+1);
+  };
+
   const elements = wordsJson.map((word) => {
     const { id, ...wordProps } = word;
-    return <Card key={id} id={id} {...wordProps} />;
+    return <Card key={id} id={id} wordAdd={wordAdd} {...wordProps} />;
   });
 
   return (
+    <div>
     <div className="game-container">
       <button className="game-button" onClick={prevSlide}>
         <LeftOutlined />
@@ -37,6 +43,8 @@ function Slider() {
       <button className="game-button" onClick={nextSlide}>
         <RightOutlined />
       </button>
+    </div>
+    <div className="game-word">выученных слов {wordNumber}/{wordsJson.length}</div>
     </div>
   );
 }

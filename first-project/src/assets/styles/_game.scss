@@ -28,3 +28,13 @@
 .game-button:hover{
     border: 2px solid $borderColor;
 }
+
+.game-word{
+    margin-top: 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 17px;
+    font-family: $fontFamily;
+    letter-spacing: $letterSpace;
+    color: $fontColor;
+}

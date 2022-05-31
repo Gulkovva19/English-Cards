@@ -1,6 +1,6 @@
 
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 function Row(props) {
 
@@ -41,6 +41,7 @@ const changeTags = (event) => {
 const ondelete = () => {
   props.onDelete(props.index);
 };
+
 
   return (
     <tr className="row">
