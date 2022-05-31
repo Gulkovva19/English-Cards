@@ -5,7 +5,7 @@ function Header() {
   return (
     <div className="header">
       <div className="menu">
-        i <HeartOutlined /> english
+        <Link to="/" className="menu-item">i <HeartOutlined /> english</Link>
       </div>
       <div className="menu">
       <Link to="/" className="menu-item">Home</Link>
