@@ -1,19 +1,18 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 
 function Card(props) {
     const [pressed, setPressed] = useState(false);
     const btnRef = useRef();
 
-    // useEffect(()=>{
-    //   btnRef.current.focus();
-    // }, []);
+    useEffect(()=>{
+      btnRef.current.focus();
+    }, []);
 
 
     const handleChange = () => {
         setPressed(!pressed);
         props.wordAdd();
         console.log(btnRef.current);
-        btnRef.current.focus();
       }
 
   return (
