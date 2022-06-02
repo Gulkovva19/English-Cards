@@ -11,7 +11,7 @@ function Card(props) {
 
     const handleChange = () => {
         setPressed(!pressed);
-        props.wordAdd();
+        props.wordAdd(props.id);
         console.log(btnRef.current);
       }
 

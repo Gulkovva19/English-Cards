@@ -7,6 +7,7 @@ import wordsJson from '../resources/wordsJson.json';
 function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
   const [wordNumber, setwordNumber] = useState(0);
+  const [wordLearned, setwordLearned] = useState([]);
 
   const nextSlide = () => {
     if (slideIndex !== wordsJson.length) {
@@ -24,8 +25,22 @@ function Slider() {
     }
   };
 
-  const wordAdd = () => {
-    setwordNumber(wordNumber+1);
+  const wordAdd = (id) => {
+    console.log(id);
+    const array = [...wordLearned];
+    array.push(id);
+    setwordLearned(array);
+    console.log(array);
+
+    let result = [];
+    for (let str of array) {
+      if (!result.includes(str)) {
+        result.push(str);
+      }
+    }
+
+    console.log(result);
+    setwordNumber(result.length);
   };
 
   const elements = wordsJson.map((word) => {
