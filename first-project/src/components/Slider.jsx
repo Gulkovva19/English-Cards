@@ -26,21 +26,18 @@ function Slider() {
   };
 
   const wordAdd = (id) => {
-    console.log(id);
     const array = [...wordLearned];
     array.push(id);
-    setwordLearned(array);
-    console.log(array);
-
+    // setwordLearned(array);
     let result = [];
     for (let str of array) {
       if (!result.includes(str)) {
         result.push(str);
       }
     }
-
+    setwordLearned(result);
     console.log(result);
-    setwordNumber(result.length);
+    setwordNumber(wordLearned.length);
   };
 
   const elements = wordsJson.map((word) => {
