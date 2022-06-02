@@ -24,6 +24,7 @@ function Row(props) {
     }
     if (state.english !== "" && state.transcription !== "" && state.russian!== "" && state.tags !== "") {
       setPressed(!pressed);
+      console.log(state);
     }
   };
 
@@ -32,6 +33,10 @@ function Row(props) {
       ...state,
       [event.target.dataset.name]: event.target.value,
     });
+
+    if (event.target.value.match(/[0-9]/)) {
+      alert("Пожалуйста, вводите только буквы")
+    }
 
     if (state.english !== "") {
       setErrorEnglish(false);
