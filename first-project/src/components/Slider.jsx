@@ -28,7 +28,6 @@ function Slider() {
   const wordAdd = (id) => {
     const array = [...wordLearned];
     array.push(id);
-    // setwordLearned(array);
     let result = [];
     for (let str of array) {
       if (!result.includes(str)) {
@@ -36,8 +35,7 @@ function Slider() {
       }
     }
     setwordLearned(result);
-    console.log(result);
-    setwordNumber(wordLearned.length);
+    setwordNumber(result.length);
   };
 
   const elements = wordsJson.map((word) => {
