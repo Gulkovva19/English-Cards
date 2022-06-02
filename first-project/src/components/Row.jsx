@@ -1,59 +1,141 @@
-
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 
 function Row(props) {
+  const [state, setState] = useState(props);
+  const [pressed, setPressed] = useState(false);
+  const [errorEnglish, setErrorEnglish] = useState(false);
+  const [errorTranscription, setErrorTranscription] = useState(false);
+  const [errorRussian, setErrorRussian] = useState(false);
+  const [errorTags, setErrorTags] = useState(false);
 
-const [pressed, setPressed] = useState(false);
-const [textEnglish, setEnglish] = useState(props.english); 
-const [textTranscription, setTranscription] = useState(props.transcription);
-const [textRussian, setRussian] = useState(props.russian);
-const [textTags, setTags] = useState(props.tags);
+  const handleChange = () => {
+    if (state.english === "") {
+      setErrorEnglish(true);
+    }
+    if (state.transcription === "") {
+      setErrorTranscription(true);
+    }
+    if (state.russian === "") {
+      setErrorRussian(true);
+    }
+    if (state.tags === "") {
+      setErrorTags(true);
+    }
+    if (state.english !== "" && state.transcription !== "" && state.russian!== "" && state.tags !== "") {
+      setPressed(!pressed);
+    }
+  };
 
-const handleChange = () => {
-  setPressed(!pressed);
-}
+  const handleChangeInput = (event) => {
+    setState({
+      ...state,
+      [event.target.dataset.name]: event.target.value,
+    });
 
-const handleChangeCansel = () => {
-  setPressed(!pressed);
-  setEnglish(props.english);
-  setTranscription(props.transcription);
-  setRussian(props.russian);
-  setTags(props.tags);
-}
+    if (state.english !== "") {
+      setErrorEnglish(false);
+    }
+    if (state.transcription !== "") {
+      setErrorTranscription(false);
+    }
+    if (state.russian !== "") {
+      setErrorRussian(false);
+    }
+    if (state.tags !== "") {
+      setErrorTags(false);
+    }
+  };
 
-const changeEnglish = (event) => {
-  setEnglish(event.target.value);
-}
+  const handleChangeCansel = () => {
+    setState({
+      ...props,
+    });
+    setPressed(!pressed);
+    setErrorEnglish(false);
+    setErrorTranscription(false);
+    setErrorRussian(false);
+    setErrorTags(false);
+  };
 
-const changeTranscription = (event) => {
-  setTranscription(event.target.value);
-}
-
-const changeRussian = (event) => {
-  setRussian(event.target.value);
-}
-
-const changeTags = (event) => {
-  setTags(event.target.value);
-}
-
-const ondelete = () => {
-  props.onDelete(props.index);
-};
-
+  const ondelete = () => {
+    props.onDelete(props.index);
+  };
 
   return (
     <tr className="row">
-      <td className="cell">{pressed ? <input name="english" className="input-edit" value={textEnglish} onChange={changeEnglish}></input> : textEnglish}</td>
-      <td className="cell">{pressed ? <input name="transcription" className="input-edit" value={textTranscription} onChange={changeTranscription}></input> : textTranscription}</td>
-      <td className="cell">{pressed ? <input name="russian" className="input-edit" value={textRussian} onChange={changeRussian}></input> : textRussian}</td>
-      <td className="cell">{pressed ? <input name="tags" className="input-edit" value={textTags} onChange={changeTags}></input> : textTags}</td>
-      <td className="cell-action">
-        {pressed ? <div className="button-container"><button onClick = {handleChange} className="button-save">save</button><button onClick = {handleChangeCansel} className="button-save">cansel</button></div> : <div onClick = {handleChange} className="icon-edit"><EditOutlined/></div>}
+      <td className="cell">
+        {pressed ? (
+          <input
+            name="english"
+            className={errorEnglish ? "input-error" : "input-edit"}
+            data-name={"english"}
+            value={state.english}
+            onChange={handleChangeInput}
+          ></input>
+        ) : (
+          state.english
+        )}
+      </td>
+      <td className="cell">
+        {pressed ? (
+          <input
+            name="transcription"
+            className={errorTranscription ? "input-error" : "input-edit"}
+            data-name={"transcription"}
+            value={state.transcription}
+            onChange={handleChangeInput}
+          ></input>
+        ) : (
+          state.transcription
+        )}
+      </td>
+      <td className="cell">
+        {pressed ? (
+          <input
+            name="russian"
+            className={errorRussian ? "input-error" : "input-edit"}
+            data-name={"russian"}
+            value={state.russian}
+            onChange={handleChangeInput}
+          ></input>
+        ) : (
+          state.russian
+        )}
+      </td>
+      <td className="cell">
+        {pressed ? (
+          <input
+            name="tags"
+            className={errorTags ? "input-error" : "input-edit"}
+            data-name={"tags"}
+            value={state.tags}
+            onChange={handleChangeInput}
+          ></input>
+        ) : (
+          state.tags
+        )}
       </td>
       <td className="cell-action">
-        <div className="icon-edit" onClick = {ondelete}><DeleteOutlined/></div>
+        {pressed ? (
+          <div className="button-container">
+            <button onClick={handleChange} className="button-save">
+              save
+            </button>
+            <button onClick={handleChangeCansel} className="button-save">
+              cansel
+            </button>
+          </div>
+        ) : (
+          <div onClick={handleChange} className="icon-edit">
+            <EditOutlined />
+          </div>
+        )}
+      </td>
+      <td className="cell-action">
+        <div className="icon-edit" onClick={ondelete}>
+          <DeleteOutlined />
+        </div>
       </td>
     </tr>
   );
