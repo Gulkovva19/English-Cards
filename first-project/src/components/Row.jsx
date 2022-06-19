@@ -4,29 +4,42 @@ import React, { useState } from "react";
 function Row(props) {
   const [state, setState] = useState(props);
   const [pressed, setPressed] = useState(false);
-  const [errorEnglish, setErrorEnglish] = useState(false);
-  const [errorTranscription, setErrorTranscription] = useState(false);
-  const [errorRussian, setErrorRussian] = useState(false);
-  const [errorTags, setErrorTags] = useState(false);
+  const [errors, setErrors] = useState({});
 
-  const handleChange = () => {
-    if (state.english === "") {
-      setErrorEnglish(true);
-    }
-    if (state.transcription === "") {
-      setErrorTranscription(true);
-    }
-    if (state.russian === "") {
-      setErrorRussian(true);
-    }
-    if (state.tags === "") {
-      setErrorTags(true);
-    }
-    if (state.english !== "" && state.transcription !== "" && state.russian!== "" && state.tags !== "") {
+  const checkValidation = () => {
+    const newErrors = Object.keys(state).reduce((account, item) => {
+      // eslint-disable-next-line default-case
+      switch (item) {
+        case "english":
+        case "transcription":
+        case "russian":
+        case "tags":
+          account = {
+            ...account,
+            [item]: state[item].trim().length > 0 ? undefined : "Пустое поле",
+          };
+          break;
+      }
+      return account;
+    }, {});
+
+    setErrors(newErrors);
+  };
+
+  const handleChangeSave = (event) => {
+    event.preventDefault();
+    checkValidation();
+
+    if (state.english !== "" && state.transcription !== "" && state.russian !== "" && state.tags !== "") {
       setPressed(!pressed);
-      console.log(state);
     }
   };
+
+  const handleChangeEdit = (event) => {
+    event.preventDefault();
+    checkValidation();
+    setPressed(!pressed);
+  }
 
   const handleChangeInput = (event) => {
     setState({
@@ -35,32 +48,18 @@ function Row(props) {
     });
 
     if (event.target.value.match(/[0-9]/)) {
-      alert("Пожалуйста, вводите только буквы")
+      alert("Пожалуйста, вводите только буквы");
     }
-
-    if (state.english !== "") {
-      setErrorEnglish(false);
-    }
-    if (state.transcription !== "") {
-      setErrorTranscription(false);
-    }
-    if (state.russian !== "") {
-      setErrorRussian(false);
-    }
-    if (state.tags !== "") {
-      setErrorTags(false);
-    }
+    
+    checkValidation();
   };
+
 
   const handleChangeCansel = () => {
     setState({
       ...props,
     });
     setPressed(!pressed);
-    setErrorEnglish(false);
-    setErrorTranscription(false);
-    setErrorRussian(false);
-    setErrorTags(false);
   };
 
   const ondelete = () => {
@@ -73,7 +72,9 @@ function Row(props) {
         {pressed ? (
           <input
             name="english"
-            className={errorEnglish ? "input-error" : "input-edit"}
+            className={
+              errors.english !== undefined ? "input-error" : "input-edit"
+            }
             data-name={"english"}
             value={state.english}
             onChange={handleChangeInput}
@@ -86,7 +87,9 @@ function Row(props) {
         {pressed ? (
           <input
             name="transcription"
-            className={errorTranscription ? "input-error" : "input-edit"}
+            className={
+              errors.transcription !== undefined ? "input-error" : "input-edit"
+            }
             data-name={"transcription"}
             value={state.transcription}
             onChange={handleChangeInput}
@@ -99,7 +102,9 @@ function Row(props) {
         {pressed ? (
           <input
             name="russian"
-            className={errorRussian ? "input-error" : "input-edit"}
+            className={
+              errors.russian !== undefined ? "input-error" : "input-edit"
+            }
             data-name={"russian"}
             value={state.russian}
             onChange={handleChangeInput}
@@ -112,7 +117,9 @@ function Row(props) {
         {pressed ? (
           <input
             name="tags"
-            className={errorTags ? "input-error" : "input-edit"}
+            className={
+              errors.tags !== undefined ? "input-error" : "input-edit"
+            }
             data-name={"tags"}
             value={state.tags}
             onChange={handleChangeInput}
@@ -124,7 +131,7 @@ function Row(props) {
       <td className="cell-action">
         {pressed ? (
           <div className="button-container">
-            <button onClick={handleChange} className="button-save">
+            <button onClick={handleChangeSave} className="button-save">
               save
             </button>
             <button onClick={handleChangeCansel} className="button-save">
@@ -132,7 +139,7 @@ function Row(props) {
             </button>
           </div>
         ) : (
-          <div onClick={handleChange} className="icon-edit">
+          <div onClick={handleChangeEdit} className="icon-edit">
             <EditOutlined />
           </div>
         )}
