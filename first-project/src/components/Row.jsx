@@ -135,7 +135,7 @@ function Row(props) {
               save
             </button>
             <button onClick={handleChangeCansel} className="button-save">
-              cansel
+              cancel
             </button>
           </div>
         ) : (
