@@ -2,7 +2,6 @@ import Row from "./Row.jsx";
 import React, { useState } from "react";
 import wordsJson from '../resources/wordsJson.json';
 
-
 function Table() {
   const [wordCollection, setwordCollection] = useState(wordsJson);
 
@@ -12,7 +11,6 @@ function Table() {
     array.splice(index, 1);
     setwordCollection(array);
   };
-
 
   return (
     <table className="table">

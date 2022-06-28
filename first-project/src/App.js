@@ -11,10 +11,12 @@ import Footer from './components/Footer.jsx'
 import Home from './components/Home.jsx'
 import Game from './components/Game.jsx'
 import NoMatch from './components/NoMatch.jsx'
+import WordsApi from './components/WordsApi.jsx'
 
 
 function App() {
   return (
+    <WordsApi>
     <Router>
       <div className="App">
         <Header />
@@ -26,6 +28,7 @@ function App() {
         <Footer />
       </div>
     </Router>
+    </WordsApi>
   );
 }
 
