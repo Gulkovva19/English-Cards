@@ -1,8 +1,9 @@
 import { LoadingOutlined } from "@ant-design/icons";
 
+
 const Loader = () => (
-  <div>
-    <LoadingOutlined />
+  <div className="loader">
+    Loading <span className="loader__spin"> <LoadingOutlined/> </span>
   </div>
 );
 

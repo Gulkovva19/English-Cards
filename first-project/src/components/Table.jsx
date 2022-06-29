@@ -1,9 +1,9 @@
 import Row from "./Row.jsx";
 import React, { useState } from "react";
-import wordsJson from '../resources/wordsJson.json';
+// import wordsJson from '../resources/wordsJson.json';
 
-function Table() {
-  const [wordCollection, setwordCollection] = useState(wordsJson);
+function Table({ words }) {
+  const [wordCollection, setwordCollection] = useState(words);
 
   const onDelete = (index) => {
     console.log(index);
@@ -34,3 +34,4 @@ function Table() {
 }
 
 export default Table;
+
