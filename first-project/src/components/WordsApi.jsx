@@ -3,51 +3,54 @@ import Loader from "./Loader.jsx";
 
 export const WordsContext = createContext();
 
-const getWords = () =>
-  fetch(
-    "https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words"
-  )
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      throw new Error("Something went wrong ...");
-    })
-    .then(
-      (response) =>
-        response
-    )
-    .catch((err) => console.log(err));
-
-
-
-const WordsApi = ({ children }) => {
-  const [wordsList, setWordsList] = useState([]);
+function WordsApi(props) {
+  const [words, setWords] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState([]);
 
   useEffect(() => {
-    console.log("Обратились к API");
-    const wordsRes = async () => {
-      const words = await getWords();
-      console.log(3, words);
-      setWordsList(words);
-      setIsLoading(false);
-    };
-    wordsRes();
+    getWords();
   }, []);
 
-  // const wordEdit = (word) => {
-  //   console.log(word);
-  // };
-  // const wordDelete = (word) => {
-  //   const newWordsList = [...wordsList].filter((wordF) => wordF.id !== word.id);
-  //   setWordsList(newWordsList);
-  // };
+  const getWords = () => {
+    setIsLoading(true);
+    fetch(
+      "https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words"
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Error ...");
+      })
+      .then((response) => {
+        setWords(response);
+      })
+      .catch((errors) => setError(errors))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
-  const valueContext = {
-    wordsList,
-    // wordEdit,
-    // wordDelete,
+  const editWords = (word) => {
+    fetch(`https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`, {
+      method: 'POST', // или 'PUT'
+      body: JSON.stringify(word), // данные могут быть 'строкой' или {объектом}!
+    })
+      .then(() => {
+        getWords();
+      })
+      .catch((errors) => setError(errors));
+  };
+
+  const deleteWords = (id) => {
+    fetch(`https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
+      method: 'POST', // или 'PUT'
+    })
+      .then(() => {
+        getWords();
+      })
+      .catch((errors) => setError(errors));
   };
 
   if (isLoading) {
@@ -55,10 +58,12 @@ const WordsApi = ({ children }) => {
   }
 
   return (
-    <WordsContext.Provider value={valueContext}>
-      {children}
+    <WordsContext.Provider
+      value={{ words, isLoading, error, editWords, deleteWords }}
+    >
+      {props.children}
     </WordsContext.Provider>
   );
-};
+}
 
 export default WordsApi;
