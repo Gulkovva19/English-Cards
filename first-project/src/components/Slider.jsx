@@ -1,13 +1,14 @@
 import Card from "./Card.jsx";
-import React, { useState } from "react";
+import React, { useState, useContext} from "react";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-// import wordsJson from '../resources/wordsJson.json';
+import { WordsContext } from './WordsApi.jsx';
 
 
-function Slider({words}) {
+function Slider() {
   const [slideIndex, setSlideIndex] = useState(1);
   const [wordNumber, setwordNumber] = useState(0);
   const [wordLearned, setwordLearned] = useState([]);
+  const { words } = useContext(WordsContext);
 
   const nextSlide = () => {
     if (slideIndex !== words.length) {

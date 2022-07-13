@@ -34,8 +34,8 @@ function WordsApi(props) {
 
   const editWords = (word) => {
     fetch(`https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`, {
-      method: 'POST', // или 'PUT'
-      body: JSON.stringify(word), // данные могут быть 'строкой' или {объектом}!
+      method: 'POST', 
+      body: JSON.stringify(word), 
     })
       .then(() => {
         getWords();
@@ -45,7 +45,7 @@ function WordsApi(props) {
 
   const deleteWords = (id) => {
     fetch(`https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/${id}/delete`, {
-      method: 'POST', // или 'PUT'
+      method: 'POST', 
     })
       .then(() => {
         getWords();
