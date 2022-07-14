@@ -1,12 +1,13 @@
 import { useState, useEffect, createContext } from "react";
 import Loader from "./Loader.jsx";
+import Error from "./Error.jsx";
 
 export const WordsContext = createContext();
 
 function WordsApi(props) {
   const [words, setWords] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getWords();
@@ -55,6 +56,10 @@ function WordsApi(props) {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   return (
