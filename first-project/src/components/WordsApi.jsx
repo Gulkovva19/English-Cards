@@ -54,6 +54,17 @@ function WordsApi(props) {
       .catch((errors) => setError(errors));
   };
 
+  const addWords = (word) => {
+    fetch(`https://cors-everywhere.herokuapp.com/http://itgirlschool.justmakeit.ru/api/words/add`, {
+      method: 'POST', 
+      body: JSON.stringify(word), 
+    })
+      .then(() => {
+        getWords();
+      })
+      .catch((errors) => setError(errors));
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -64,7 +75,7 @@ function WordsApi(props) {
 
   return (
     <WordsContext.Provider
-      value={{ words, isLoading, error, editWords, deleteWords }}
+      value={{ words, isLoading, error, editWords, deleteWords, addWords }}
     >
       {props.children}
     </WordsContext.Provider>
