@@ -1,4 +1,3 @@
-
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -6,6 +5,8 @@ import {
   Route
 } from "react-router-dom";
 import './assets/styles/base.scss'
+import { observer, inject } from 'mobx-react';
+import { useEffect } from 'react';
 import Header from './components/Header.jsx'
 import Footer from './components/Footer.jsx'
 import Home from './components/Home.jsx'
@@ -14,7 +15,12 @@ import NoMatch from './components/NoMatch.jsx'
 import WordsApi from './components/WordsApi.jsx'
 
 
-function App() {
+function App({ wordStore }) {
+
+  useEffect(() => {
+    wordStore.loadData();
+  }, []);
+
   return (
     <Router>
       <div className="App">
@@ -32,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default inject(['wordStore'])(observer(App));

@@ -1,8 +1,7 @@
-import { useState, useContext } from "react";
-import { WordsContext } from "./WordsApi.jsx";
+import { useState } from "react";
+import { observer, inject } from 'mobx-react';
 
-const Form = () => {
-  const { addWords } = useContext(WordsContext);
+const Form = ({ wordStore }) => {
   const [state, setState] = useState();
 
   const handleChangeInput = (event) => {
@@ -30,7 +29,7 @@ const Form = () => {
       state.russian !== "" &&
       state.tags !== ""
     ) {
-      addWords(state);
+      wordStore.wordAdd(state);
       setState();
     }
   };
@@ -87,4 +86,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default inject(['wordStore'])(observer(Form));
