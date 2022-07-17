@@ -1,15 +1,17 @@
 import Row from "./Row.jsx";
-import React, { useState } from "react";
-import wordsJson from '../resources/wordsJson.json';
+import React, { useState, useEffect, useContext } from "react";
+import { WordsContext } from './WordsApi.jsx';
 
-function Table() {
-  const [wordCollection, setwordCollection] = useState(wordsJson);
+function Table () {
+  const { words, deleteWords } = useContext(WordsContext);
+  const [wordCollection, setwordCollection] = useState(words);
 
-  const onDelete = (index) => {
-    console.log(index);
-    const array = [...wordCollection];
-    array.splice(index, 1);
-    setwordCollection(array);
+  useEffect(() => {
+    setwordCollection(words);
+  }, [words]);
+
+  const onDelete = (id) => {
+    deleteWords(id);
   };
 
   return (
@@ -34,3 +36,4 @@ function Table() {
 }
 
 export default Table;
+

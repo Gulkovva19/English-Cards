@@ -1,12 +1,25 @@
-
-
 .row {
     height: 40px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 70vw;
     background-color: $secondColor;
     color: $fontColor;
+}
+
+.row-form {
+    margin-top: 30px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70vw;
+    background-color: $secondColor;
+    color: $fontColor;
+    font-family: $fontFamily;
+    letter-spacing: $letterSpace;
+    box-shadow: 0px 0px 5px 5px rgb(255, 189, 169);
 }
 
 .row-main {
@@ -27,6 +40,7 @@
     padding-left: 10px;
     width: 20%;
     border: 1px solid $borderColor;
+    color: $fontColor;
 }
 
 .cell-main {
@@ -86,6 +100,26 @@
     }
 }
 
+.button-form {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $borderColor;
+    font-weight: 400;
+    width: 90%;
+    height: 60%;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, $mainColor 0%, $fontColor 51%, $mainColor 100%);
+    background-size: 200% auto;
+    border: none;
+    transition: .5s;
+
+    &:hover {
+        background-position: right center;
+    }
+}
+
 .input-edit {
     width: 100%;
     margin-right: 10px;
@@ -95,7 +129,22 @@
     color: $fontColor;
 }
 
-.input-error{
+.input-form {
+    width: 100%;
+    margin-right: 10px;
+    height: 60%;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    color: $fontColor;
+    font-family: $fontFamily;
+
+    &::placeholder {
+        color: $fontColor;
+        font-family: $fontFamily;
+    }
+}
+
+.input-error {
     width: 100%;
     margin-right: 10px;
     height: 60%;
@@ -105,10 +154,10 @@
 }
 
 
-.icon-edit{
+.icon-edit {
     border-radius: 5px;
 
-    &:hover{
+    &:hover {
         background-color: $borderColor;
     }
 }

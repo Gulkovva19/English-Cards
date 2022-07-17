@@ -1,9 +1,9 @@
 
 .home {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     height: 100vh;
-    padding-top: 70px;
     background-color: $mainColor;
 }

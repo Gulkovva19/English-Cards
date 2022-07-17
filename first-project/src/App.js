@@ -16,19 +16,19 @@ import WordsApi from './components/WordsApi.jsx'
 
 function App() {
   return (
-    <WordsApi>
     <Router>
       <div className="App">
         <Header />
+        <WordsApi>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/game" element={<Game />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
+        </WordsApi>
         <Footer />
       </div>
     </Router>
-    </WordsApi>
   );
 }
 

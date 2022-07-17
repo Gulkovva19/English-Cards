@@ -1,10 +1,12 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { WordsContext } from './WordsApi.jsx';
 
 function Row(props) {
   const [state, setState] = useState(props);
   const [pressed, setPressed] = useState(false);
   const [errors, setErrors] = useState({});
+  const { editWords } = useContext(WordsContext);
 
   const checkValidation = () => {
     const newErrors = Object.keys(state).reduce((account, item) => {
@@ -29,10 +31,10 @@ function Row(props) {
   const handleChangeSave = (event) => {
     event.preventDefault();
     checkValidation();
-
     if (state.english !== "" && state.transcription !== "" && state.russian !== "" && state.tags !== "") {
       setPressed(!pressed);
     }
+    editWords(state);
   };
 
   const handleChangeEdit = (event) => {
@@ -63,7 +65,7 @@ function Row(props) {
   };
 
   const ondelete = () => {
-    props.onDelete(props.index);
+    props.onDelete(props.id);
   };
 
   return (
