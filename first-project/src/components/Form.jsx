@@ -78,10 +78,10 @@ const Form = () => {
         />
       </div>
       <div className="cell-action">
-        <button className="button-form" onClick={onSubmit}>Добавить</button>
+        <button className="button-form" onClick={onSubmit}>Add</button>
       </div>
       <div className="cell-action">
-        <button className="button-form" onClick={clearForm}>Очистить</button>
+        <button className="button-form" onClick={clearForm}>Clear</button>
       </div>
     </form>
   );
