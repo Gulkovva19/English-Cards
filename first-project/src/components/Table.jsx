@@ -1,17 +1,10 @@
 import Row from "./Row.jsx";
-import React, { useState, useEffect, useContext } from "react";
-import { WordsContext } from './WordsApi.jsx';
+import { observer, inject } from 'mobx-react';
 
-function Table () {
-  const { words, deleteWords } = useContext(WordsContext);
-  const [wordCollection, setwordCollection] = useState(words);
-
-  useEffect(() => {
-    setwordCollection(words);
-  }, [words]);
+function Table ({ wordStore }) {
 
   const onDelete = (id) => {
-    deleteWords(id);
+    wordStore.deleteWords(id);
   };
 
   return (
@@ -27,13 +20,13 @@ function Table () {
         </tr>
       </thead>
       <tbody>
-        {wordCollection.map((word, index) => (
-          <Row index={index} key={word.id} {...word} onDelete={onDelete}></Row>
+        {wordStore.words.map((word, index) => (
+          <Row index={index} key={word.id} word={word} onDelete={onDelete}></Row>
         ))}
       </tbody>
     </table>
   );
 }
 
-export default Table;
+export default inject(['wordStore'])(observer(Table));
 

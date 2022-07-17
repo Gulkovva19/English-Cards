@@ -1,12 +1,11 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import React, { useState, useContext } from "react";
-import { WordsContext } from './WordsApi.jsx';
+import React, { useState } from "react";
+import { observer, inject } from 'mobx-react';
 
-function Row(props) {
-  const [state, setState] = useState(props);
+function Row({ wordStore, word }) {
+  const [state, setState] = useState(word);
   const [pressed, setPressed] = useState(false);
   const [errors, setErrors] = useState({});
-  const { editWords } = useContext(WordsContext);
 
   const checkValidation = () => {
     const newErrors = Object.keys(state).reduce((account, item) => {
@@ -34,7 +33,7 @@ function Row(props) {
     if (state.english !== "" && state.transcription !== "" && state.russian !== "" && state.tags !== "") {
       setPressed(!pressed);
     }
-    editWords(state);
+    wordStore.wordEdit(state);
   };
 
   const handleChangeEdit = (event) => {
@@ -59,13 +58,13 @@ function Row(props) {
 
   const handleChangeCansel = () => {
     setState({
-      ...props,
+      ...wordStore.words,
     });
     setPressed(!pressed);
   };
 
   const ondelete = () => {
-    props.onDelete(props.id);
+    wordStore.wordDelete(word.id);
   };
 
   return (
@@ -155,4 +154,4 @@ function Row(props) {
   );
 }
 
-export default Row;
+export default inject(['wordStore'])(observer(Row));
